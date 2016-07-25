@@ -116,15 +116,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="XamlingCore.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.161\lib\MonoAndroid\XamlingCore.Droid.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\MonoAndroid\XamlingCore.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XamlingCore.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.161\lib\MonoAndroid\XamlingCore.Portable.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\MonoAndroid\XamlingCore.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XamlingCore.XamarinThings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.161\lib\MonoAndroid\XamlingCore.XamarinThings.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\MonoAndroid\XamlingCore.XamarinThings.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

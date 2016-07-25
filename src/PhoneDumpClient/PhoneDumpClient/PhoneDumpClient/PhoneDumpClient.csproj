@@ -87,11 +87,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="XamlingCore.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.162\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\XamlingCore.Portable.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\XamlingCore.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XamlingCore.XamarinThings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.162\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\XamlingCore.XamarinThings.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\XamlingCore.XamarinThings.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

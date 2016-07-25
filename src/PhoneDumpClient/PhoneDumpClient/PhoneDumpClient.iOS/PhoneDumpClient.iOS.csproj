@@ -147,15 +147,15 @@
     </Reference>
     <Reference Include="Xamarin.iOS" />
     <Reference Include="XamlingCore.iOS.Unified, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.161\lib\Xamarin.iOS10\XamlingCore.iOS.Unified.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\Xamarin.iOS10\XamlingCore.iOS.Unified.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XamlingCore.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.161\lib\Xamarin.iOS10\XamlingCore.Portable.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\Xamarin.iOS10\XamlingCore.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XamlingCore.XamarinThings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore.2.1.161\lib\Xamarin.iOS10\XamlingCore.XamarinThings.dll</HintPath>
+      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\Xamarin.iOS10\XamlingCore.XamarinThings.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
