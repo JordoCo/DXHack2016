@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PhoneDumpClient.UWP.Glue;
+using PhoneDumpClient.View.Root;
 
 namespace PhoneDumpClient.UWP
 {
@@ -21,7 +23,9 @@ namespace PhoneDumpClient.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new PhoneDumpClient.App());
+            var xapp = new PhoneDumpClient.App();
+            xapp.Init<RootMasterDetailViewModel, ProjectGlue>();
+            LoadApplication(xapp);
         }
     }
 }
