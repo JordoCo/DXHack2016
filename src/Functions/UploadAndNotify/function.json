@@ -1,0 +1,33 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "webHookType": "genericJson",
+      "name": "req"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "notificationHub",
+      "name": "notification",
+      "hubName": "dumphub",
+      "connection": "phonedump_NOTIFICATIONHUB",
+      "tagExpression": "213",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "document",
+      "databaseName": "pdmain",
+      "collectionName": "pdmaincollection",
+      "createIfNotExists": false,
+      "connection": "phonedump_DOCUMENTDB",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
