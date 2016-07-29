@@ -16,11 +16,10 @@ namespace PhoneDumpClient.View
         public HomeViewModel(IFilePickerService filePickerService)
         {
             MainText = "Jordan";
-            Device.BeginInvokeOnMainThread(async () => 
+            Device.BeginInvokeOnMainThread(async () =>
             {
                 var str = await filePickerService.GetFileStringAsync();
             });
         }
-
     }
 }

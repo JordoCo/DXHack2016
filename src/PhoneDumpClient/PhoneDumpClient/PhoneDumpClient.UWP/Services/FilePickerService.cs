@@ -35,9 +35,6 @@ namespace PhoneDumpClient.UWP.Services
                 var str = Convert.ToBase64String(bytes);
                 return str;
             }
-            return null;
         }
-
-
     }
 }
