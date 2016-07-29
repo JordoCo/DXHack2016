@@ -6,6 +6,7 @@ using Autofac;
 using PhoneDumpClient.View;
 using XamlingCore.iOS.Unified.Glue;
 using XamlingCore.Platform.Shared.Glue;
+using PhoneDump.Services.Auth;
 
 namespace PhoneDumpClient.iOS.Glue
 {
@@ -24,6 +25,11 @@ namespace PhoneDumpClient.iOS.Glue
               .Where(_ => _.FullName.Contains("Service") || _.FullName.Contains("Repo"))
               .AsImplementedInterfaces()
               .SingleInstance();
+
+            Builder.RegisterAssemblyTypes(typeof(TokenService).GetTypeInfo().Assembly)
+            .Where(_ => _.FullName.Contains("Service") || _.FullName.Contains("Repo"))
+            .AsImplementedInterfaces()
+            .SingleInstance();
 
             //you can also do Builder.RegisterModule<> etc just like with Autofac - look it up :)
 

@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Auth\TokenRequest.cs" />
+    <Compile Include="Auth\TokenResult.cs" />
     <Compile Include="Dumps\DumpWireEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Auth\TokenService.cs" />
+    <Compile Include="Auth\TokenTestService.cs" />
+    <Compile Include="Config\ConfigService.cs" />
+    <Compile Include="Config\TransferConfigService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhoneDump.Contract\PhoneDump.Contract.csproj">
+      <Project>{49425B72-6797-4997-895A-471FA343AF3E}</Project>
+      <Name>PhoneDump.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhoneDump.Entity\PhoneDump.Entity.csproj">
+      <Project>{403911D3-78FF-4A0B-8C86-650ABA503D38}</Project>
+      <Name>PhoneDump.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

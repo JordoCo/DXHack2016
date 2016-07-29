@@ -161,6 +161,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\PhoneDump.Services\PhoneDump.Services\PhoneDump.Services.csproj">
+      <Project>{A6BDF4C3-DEDA-464B-BA4C-842BEC828145}</Project>
+      <Name>PhoneDump.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhoneDumpClient\PhoneDumpClient.csproj">
       <Project>{83B6CF64-3CF4-4924-B218-36FA2D03BFAD}</Project>
       <Name>PhoneDumpClient</Name>
