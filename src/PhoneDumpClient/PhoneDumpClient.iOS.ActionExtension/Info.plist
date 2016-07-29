@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>PhoneDumpClient.iOS.ShareExtension</string>
+	<string>PhoneDumpClient.iOS.ActionExtension</string>
 	<key>CFBundleName</key>
-	<string>PhoneDumpClient.iOS.ShareExtension</string>
+	<string>PhoneDumpClient.iOS.ActionExtension</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.PhoneDumpClient.ShareExtension</string>
+	<string>com.yourcompany.PhoneDumpClient.ActionExtension</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -30,7 +30,7 @@
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.share-services</string>
+		<string>com.apple.ui-services</string>
 	</dict>
 </dict>
 </plist>

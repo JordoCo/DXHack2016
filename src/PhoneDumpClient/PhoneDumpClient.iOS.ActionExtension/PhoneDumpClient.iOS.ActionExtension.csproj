@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectGuid>{1855F446-1BAA-4F16-8687-B119DDE16AFA}</ProjectGuid>
+    <ProjectGuid>{4D9A278E-4CC4-4196-A5AA-E9841E19448D}</ProjectGuid>
     <ProjectTypeGuids>{EE2C853D-36AF-4FDB-B1AD-8E90477E2198};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>PhoneDumpClient.iOS.ShareExtension</RootNamespace>
-    <AssemblyName>PhoneDumpClient.iOS.ShareExtension</AssemblyName>
+    <RootNamespace>PhoneDumpClient.iOS.ActionExtension</RootNamespace>
+    <AssemblyName>PhoneDumpClient.iOS.ActionExtension</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -102,9 +102,9 @@
     <InterfaceDefinition Include="MainInterface.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShareViewController.cs" />
-    <Compile Include="ShareViewController.designer.cs">
-      <DependentUpon>ShareViewController.cs</DependentUpon>
+    <Compile Include="ActionViewController.cs" />
+    <Compile Include="ActionViewController.designer.cs">
+      <DependentUpon>ActionViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
