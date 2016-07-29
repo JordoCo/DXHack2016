@@ -11,6 +11,8 @@ using System.Windows.Input;
 using PhoneDump.Contract.Services;
 using PhoneDump.Entity.Dumps;
 using XamlingCore.Portable.View;
+using XamlingCore.Portable.Messages.XamlingMessenger;
+using PhoneDump.Services.Messages;
 
 namespace PhoneDumpClient.View
 {
@@ -29,6 +31,8 @@ namespace PhoneDumpClient.View
             ISendDumpService sendDumpService)
         {
 
+            this.Register<NewDumpMessage>(_onNewDumpMessage);
+
             TestButtonCommand = new XCommand(_onTestButton);
 
             _tokenService = tokenService;
@@ -36,6 +40,23 @@ namespace PhoneDumpClient.View
             _filePickerService = filePickerService;
             _sendDumpService = sendDumpService;
             MainText = "Jordan";
+
+        }
+
+        void _onNewDumpMessage(object message)
+        {
+            var m = message as NewDumpMessage;
+
+            if (m?.Entity == null)
+            {
+                return;
+            }
+
+            _processImage(m.Entity);
+        }
+
+        void _processImage(DumpWireEntity dump)
+        {
             
         }
 
