@@ -48,10 +48,12 @@
     </array>
     <key>UILaunchStoryboardName</key>
     <string>LaunchScreen</string>
-  </dict>
+
 
 
 <key>CFBundleDocumentTypes</key>
+
+
     <array>
         <dict>
             <key>CFBundleTypeExtensions</key>
@@ -120,6 +122,10 @@
             </dict>
         </dict>
     </array>
+
+
+  </dict>
+
 
 
 </plist>
