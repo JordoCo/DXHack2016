@@ -38,6 +38,7 @@
     <Compile Include="Auth\TokenTestService.cs" />
     <Compile Include="Config\ConfigService.cs" />
     <Compile Include="Config\TransferConfigService.cs" />
+    <Compile Include="Dumps\LocalDumpService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

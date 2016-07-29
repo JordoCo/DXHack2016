@@ -1,8 +1,8 @@
-﻿using PhoneDump.Contract.Servers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using PhoneDump.Contract.Services;
 
 namespace PhoneDumpClient.iOS.Model.Services
 {

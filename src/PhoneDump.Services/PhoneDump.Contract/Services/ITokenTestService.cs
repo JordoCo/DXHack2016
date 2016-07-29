@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PhoneDump.Entity.Auth;
 
-namespace PhoneDump.Contract.Servers
+namespace PhoneDump.Contract.Services
 {
     public interface ITokenTestService
     {
