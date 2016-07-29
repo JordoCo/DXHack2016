@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Windows.Foundation;
 using Devkoes.Restup.WebServer.Attributes;
 using Devkoes.Restup.WebServer.Models.Schemas;
 using Devkoes.Restup.WebServer.Rest.Models.Contracts;
@@ -25,6 +27,13 @@ namespace PhoneDumpClient.UWP.Model.Controllers
         //    Debug.WriteLine($"Received counter value of {data.Counter}");
         //    return new PostResponse(PostResponse.ResponseStatus.Created, $"fromcontent/{data.Counter}");
         //}
+
+
+        [UriFormat("/async")]
+        public IAsyncOperation<IGetResponse> GetSomethingAsync()
+        {
+            return Task.FromResult<IGetResponse>(new GetResponse(GetResponse.ResponseStatus.OK, "asyncvalue")).AsAsyncOperation();
+        }
 
         [UriFormat("/data")]
         public IPostResponse PostSomething([FromContent] DumpWireEntity data)

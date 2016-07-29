@@ -4,13 +4,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhoneDump.Contract.Services;
 using PhoneDump.Entity;
 using PhoneDump.Entity.Dumps;
 using XamlingCore.Portable.Contract.Entities;
 
 namespace PhoneDump.Services.Dumps
 {
-    public class LocalDumpService
+    public class LocalDumpService : ILocalDumpService
     {
         private readonly IEntityCache _cache;
 

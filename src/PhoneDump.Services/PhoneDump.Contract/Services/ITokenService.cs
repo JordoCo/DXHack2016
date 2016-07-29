@@ -1,4 +1,4 @@
-﻿namespace PhoneDump.Contract.Servers
+﻿namespace PhoneDump.Contract.Services
 {
     public interface ITokenService
     {

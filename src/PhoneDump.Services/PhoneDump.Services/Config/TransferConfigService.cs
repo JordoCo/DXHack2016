@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PhoneDump.Contract.Servers;
+using PhoneDump.Contract.Services;
 using XamlingCore.Portable.Contract.Config;
 using XamlingCore.Portable.Contract.Downloaders;
 using XamlingCore.Portable.Net.DownloadConfig;

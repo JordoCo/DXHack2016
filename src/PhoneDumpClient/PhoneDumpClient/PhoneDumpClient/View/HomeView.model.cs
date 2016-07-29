@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PhoneDump.Contract.Servers;
 using XamlingCore.Portable.View.ViewModel;
 using PhoneDumpClient.Services;
 using Xamarin.Forms;
 using System.Diagnostics;
+using PhoneDump.Contract.Services;
 using PhoneDump.Entity.Dumps;
 
 namespace PhoneDumpClient.View

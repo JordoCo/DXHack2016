@@ -8,7 +8,7 @@ using Devkoes.Restup.WebServer.Http;
 using Devkoes.Restup.WebServer.Rest;
 
 using PhoneDumpClient.UWP.Model.Controllers;
-using PhoneDump.Contract.Servers;
+using PhoneDump.Contract.Services;
 
 namespace PhoneDumpClient.UWP.Model.Services
 {

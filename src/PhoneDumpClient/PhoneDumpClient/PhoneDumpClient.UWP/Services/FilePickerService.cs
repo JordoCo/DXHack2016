@@ -24,6 +24,10 @@ namespace PhoneDumpClient.UWP.Services
 
             // Get the file and stream.
             var file = await picker.PickSingleFileAsync();
+            if (file == null)
+            {
+                return null;
+            }
             return await file.OpenStreamForReadAsync();
         }
 
@@ -31,6 +35,11 @@ namespace PhoneDumpClient.UWP.Services
         {
             using (var stream = await GetFileStreamAsync())
             {
+                if (stream == null)
+                {
+                    return null;
+                }
+
                 var bytes = stream.GetBytes();
                 var str = Convert.ToBase64String(bytes);
                 return str;

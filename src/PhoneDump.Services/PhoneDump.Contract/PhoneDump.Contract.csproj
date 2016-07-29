@@ -35,9 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servers\ITokenService.cs" />
-    <Compile Include="Servers\ITokenTestService.cs" />
-    <Compile Include="Servers\IWebService.cs" />
+    <Compile Include="Services\ILocalDumpService.cs" />
+    <Compile Include="Services\ITokenService.cs" />
+    <Compile Include="Services\ITokenTestService.cs" />
+    <Compile Include="Services\IWebService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
