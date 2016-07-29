@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
+using Autofac;
 using PhoneDumpClient.View;
 using XamlingCore.iOS.Unified.Glue;
 using XamlingCore.Platform.Shared.Glue;
@@ -17,6 +19,11 @@ namespace PhoneDumpClient.iOS.Glue
             //do this for any assemblies where you need to resolve views and view models.
             XCoreAutoRegistration.RegisterAssembly(Builder, typeof(HomeViewModel));
             XCoreAutoRegistration.RegisterAssembly(Builder, typeof(ProjectGlue));
+
+            Builder.RegisterAssemblyTypes(typeof(ProjectGlue).GetTypeInfo().Assembly)
+              .Where(_ => _.FullName.Contains("Service") || _.FullName.Contains("Repo"))
+              .AsImplementedInterfaces()
+              .SingleInstance();
 
             //you can also do Builder.RegisterModule<> etc just like with Autofac - look it up :)
 
