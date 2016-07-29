@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using XamlingCore.Portable.View.ViewModel;
 using PhoneDumpClient.Services;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace PhoneDumpClient.View
 {
