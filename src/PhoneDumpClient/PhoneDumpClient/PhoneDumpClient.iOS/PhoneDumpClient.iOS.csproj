@@ -161,6 +161,9 @@
       <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\Xamarin.iOS10\XamlingCore.XamarinThings.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ModernHttpClient">
+      <HintPath>..\..\packages\modernhttpclient.2.4.2\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\PhoneDump.Services\PhoneDump.Services\PhoneDump.Services.csproj">
@@ -174,6 +177,11 @@
     <ProjectReference Include="..\PhoneDumpClient\PhoneDumpClient.csproj">
       <Project>{83B6CF64-3CF4-4924-B218-36FA2D03BFAD}</Project>
       <Name>PhoneDumpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PhoneDumpClient.iOS.ShareExtension\PhoneDumpClient.iOS.ShareExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{1855F446-1BAA-4F16-8687-B119DDE16AFA}</Project>
+      <Name>PhoneDumpClient.iOS.ShareExtension</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
