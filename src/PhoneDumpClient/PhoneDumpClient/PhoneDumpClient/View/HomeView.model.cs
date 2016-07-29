@@ -9,5 +9,11 @@ namespace PhoneDumpClient.View
 {
     public class HomeViewModel : XViewModel
     {
+        public string MainText { get; set; }
+
+        public HomeViewModel()
+        {
+            MainText = "Jordan";
+        }
     }
 }

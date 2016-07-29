@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 using Foundation;
+using PhoneDumpClient.iOS.Glue;
+using PhoneDumpClient.View.Root;
 using UIKit;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
+using XamlingCore.iOS.Unified.Root;
+using XamlingCore.Portable.Service.Localisation;
 
 namespace PhoneDumpClient.iOS
 {
@@ -22,10 +29,35 @@ namespace PhoneDumpClient.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            XLocale.CultureInfo = new CultureInfo(NSLocale.PreferredLanguages[0]);
+
+            Forms.Init();
+
+            _configurePretties();
+
+            var xapp = new App();
+            xapp.Init<RootMasterDetailViewModel, ProjectGlue>();
+            LoadApplication(xapp);
+           
 
             return base.FinishedLaunching(app, options);
+        }
+
+        async void _configurePretties()
+        {
+            UINavigationBar.Appearance.BackgroundColor = UIColor.FromRGBA(0, 0, 0, 0);
+            UINavigationBar.Appearance.TintColor = Color.Blue.ToUIColor();
+            UINavigationBar.Appearance.BarTintColor = UIColor.White;
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes()
+            {
+                TextColor = UIColor.Black
+            });
+
+            await System.Threading.Tasks.Task.Delay(1000);
+
+            var rootView = UIApplication.SharedApplication.KeyWindow.RootViewController;
+            XiOSRoot.RootViewController = rootView;
+            XiOSRoot.RootWindow = UIApplication.SharedApplication.KeyWindow;
         }
     }
 }
