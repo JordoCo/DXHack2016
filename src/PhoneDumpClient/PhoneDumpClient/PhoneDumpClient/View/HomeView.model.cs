@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using PhoneDump.Contract.Servers;
 using XamlingCore.Portable.View.ViewModel;
+using PhoneDumpClient.Services;
+using Xamarin.Forms;
+using System.Diagnostics;
+using PhoneDump.Entity.Dumps;
 
 namespace PhoneDumpClient.View
 {
@@ -14,11 +18,21 @@ namespace PhoneDumpClient.View
         private readonly ITokenTestService _testService;
         public string MainText { get; set; }
 
-        public HomeViewModel(ITokenService tokenService, ITokenTestService testService)
+        public HomeViewModel()
         {
             _tokenService = tokenService;
             _testService = testService;
             MainText = "Jordan";
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var str = await filePickerService.GetFileStringAsync();
+                var entity = new DumpWireEntity
+                {
+                    Id = Guid.NewGuid(),
+                    EncodedData = str,
+                    MediaType = "something"
+                };
+            });
         }
 
         public override void OnInitialise()
