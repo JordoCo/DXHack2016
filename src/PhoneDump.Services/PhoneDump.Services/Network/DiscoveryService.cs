@@ -13,7 +13,7 @@ namespace PhoneDump.Services.Network
 
         public async Task PerformDiscovery()
         {
-            LocalUrl = "http://10.83.232.44:8800/api/data";
+            LocalUrl = "http://10.83.232.146:8800/api/data";
         }
     }
 }

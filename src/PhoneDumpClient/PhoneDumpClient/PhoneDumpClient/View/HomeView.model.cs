@@ -13,6 +13,7 @@ using PhoneDump.Entity.Dumps;
 using XamlingCore.Portable.View;
 using XamlingCore.Portable.Messages.XamlingMessenger;
 using PhoneDump.Services.Messages;
+using System.IO;
 
 namespace PhoneDumpClient.View
 {
@@ -25,6 +26,10 @@ namespace PhoneDumpClient.View
         public string MainText { get; set; }
 
         public ICommand TestButtonCommand { get; set; }
+
+        private ImageSource _dumpSource;
+        public ImageSource DumpSource { get { return _dumpSource; }
+            set { _dumpSource = value;  OnPropertyChanged();  } }
 
         public HomeViewModel(ITokenService tokenService, ITokenTestService testService,
             IFilePickerService filePickerService,
@@ -57,7 +62,12 @@ namespace PhoneDumpClient.View
 
         void _processImage(DumpWireEntity dump)
         {
-            
+            // Overtake string-data from object in variable
+            string cFotoBase64 = dump.EncodedData; // Overtake string-data from object in variable
+                                                    // Convert in Byte-Array with encoding
+            Byte[] ImageFotoBase64 = System.Convert.FromBase64String(cFotoBase64);
+            // Create Image and set stream from converted Byte-Array as source
+            DumpSource = ImageSource.FromStream(() => new MemoryStream(ImageFotoBase64));//, WidthRequest = 200, HeightRequest = 200, BackgroundColor = Color.Aqua, };
         }
 
         async void _onTestButton()

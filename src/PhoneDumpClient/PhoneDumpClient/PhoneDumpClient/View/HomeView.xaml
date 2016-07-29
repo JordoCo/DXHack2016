@@ -5,6 +5,7 @@
   <StackLayout>
     <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" />
     <Button Command="{Binding TestButtonCommand}" Text="Send"></Button>
+    <Image Source="{Binding DumpSource}"/>
   </StackLayout>
 
 </ContentPage>
