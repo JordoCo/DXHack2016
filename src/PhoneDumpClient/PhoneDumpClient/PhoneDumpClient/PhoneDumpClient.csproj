@@ -36,7 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IFilePickerService.cs" />
     <Compile Include="View\HomeView.model.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +114,20 @@
     <Folder Include="Model\Entity\" />
     <Folder Include="Model\Repo\" />
     <Folder Include="Model\Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PhoneDump.Services\PhoneDump.Contract\PhoneDump.Contract.csproj">
+      <Project>{49425b72-6797-4997-895a-471fa343af3e}</Project>
+      <Name>PhoneDump.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PhoneDump.Services\PhoneDump.Entity\PhoneDump.Entity.csproj">
+      <Project>{403911d3-78ff-4a0b-8c86-650aba503d38}</Project>
+      <Name>PhoneDump.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PhoneDump.Services\PhoneDump.Services\PhoneDump.Services.csproj">
+      <Project>{a6bdf4c3-deda-464b-ba4c-842bec828145}</Project>
+      <Name>PhoneDump.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

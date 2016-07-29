@@ -88,8 +88,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Glue\ProjectGlue.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Model\Services\WebService.cs" />
+    <Compile Include="Services\FilePickerService.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -160,6 +163,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\PhoneDump.Services\PhoneDump.Contract\PhoneDump.Contract.csproj">
+      <Project>{49425B72-6797-4997-895A-471FA343AF3E}</Project>
+      <Name>PhoneDump.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhoneDumpClient\PhoneDumpClient.csproj">
       <Project>{83B6CF64-3CF4-4924-B218-36FA2D03BFAD}</Project>
       <Name>PhoneDumpClient</Name>

@@ -3,6 +3,8 @@ using Autofac.Core;
 using PhoneDumpClient.View;
 using XamlingCore.Windows8.Glue;
 using XamlingCore.Windows8.Shared.Glue;
+using Autofac;
+using System.Reflection;
 
 namespace PhoneDumpClient.UWP.Glue
 {
@@ -14,6 +16,11 @@ namespace PhoneDumpClient.UWP.Glue
 
             XCoreAutoRegistration.RegisterAssembly(Builder, typeof(HomeViewModel));
             XCoreAutoRegistration.RegisterAssembly(Builder, typeof(ProjectGlue));
+
+            Builder.RegisterAssemblyTypes(typeof(ProjectGlue).GetTypeInfo().Assembly)
+             .Where(_ => _.FullName.Contains("Service") || _.FullName.Contains("Repo"))
+             .AsImplementedInterfaces()
+             .SingleInstance();
 
             // Builder.RegisterType<WorkflowExamples>();
             Container = Builder.Build();
