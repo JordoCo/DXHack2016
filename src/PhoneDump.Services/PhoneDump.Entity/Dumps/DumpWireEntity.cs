@@ -14,5 +14,6 @@ namespace PhoneDump.Entity.Dumps
         public string EncodedData { get; set; }
         public string RawData { get; set; }
         public string MediaType { get; set; }
+        public string Param { get; set; }
     }
 }

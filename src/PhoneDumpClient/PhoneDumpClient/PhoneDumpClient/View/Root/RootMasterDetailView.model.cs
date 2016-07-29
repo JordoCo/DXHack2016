@@ -15,13 +15,16 @@ namespace PhoneDumpClient.View.Root
     {
         private readonly IWebService _webService;
         private readonly ILocalDumpService _localDumps;
+        private readonly IDiscoveryService _discoveryService;
 
         public RootMasterDetailViewModel(IViewResolver viewResolver, 
             IWebService webService,
-            ILocalDumpService localDumps) : base(viewResolver)
+            ILocalDumpService localDumps, 
+            IDiscoveryService discoveryService) : base(viewResolver)
         {
             _webService = webService;
             _localDumps = localDumps;
+            _discoveryService = discoveryService;
         }
 
         public override void OnInitialise()
@@ -47,6 +50,7 @@ namespace PhoneDumpClient.View.Root
         async void _initAsyncs()
         {
             await _localDumps.Init();
+            await _discoveryService.PerformDiscovery();
         }
     }
 }

@@ -6,6 +6,8 @@ using Devkoes.Restup.WebServer.Attributes;
 using Devkoes.Restup.WebServer.Models.Schemas;
 using Devkoes.Restup.WebServer.Rest.Models.Contracts;
 using PhoneDump.Entity.Dumps;
+using PhoneDump.Services.Messages;
+using XamlingCore.Portable.Messages.XamlingMessenger;
 
 namespace PhoneDumpClient.UWP.Model.Controllers
 {
@@ -44,7 +46,10 @@ namespace PhoneDumpClient.UWP.Model.Controllers
            
 
             Debug.WriteLine($"Received length: {b.Length}");
-            return new PostResponse(PostResponse.ResponseStatus.Created, $"data/{b.Length}");
+
+            new DumpReceivedMessage(data).Send();
+
+            return new PostResponse(PostResponse.ResponseStatus.Created, $"data/{data.Id}");
         }
 
         //[UriFormat("/stringencoding")]
