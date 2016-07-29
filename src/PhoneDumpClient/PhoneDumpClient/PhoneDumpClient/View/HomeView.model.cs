@@ -22,10 +22,12 @@ namespace PhoneDumpClient.View
         private readonly ITokenTestService _testService;
         private readonly IFilePickerService _filePickerService;
         private readonly ISendDumpService _sendDumpService;
-        public string MainText { get; set; }
+
+        public string _mainText;
 
         public ICommand TestButtonCommand { get; set; }
 
+        
         public HomeViewModel(ITokenService tokenService, ITokenTestService testService,
             IFilePickerService filePickerService,
             ISendDumpService sendDumpService)
@@ -39,8 +41,18 @@ namespace PhoneDumpClient.View
             _testService = testService;
             _filePickerService = filePickerService;
             _sendDumpService = sendDumpService;
-            MainText = "Jordan";
 
+            _timer();
+
+        }
+
+        async void _timer()
+        {
+            while (true)
+            {
+                MainText = DateTime.Now.ToString();
+                await Task.Delay(1000);
+            }
         }
 
         void _onNewDumpMessage(object message)
@@ -86,5 +98,16 @@ namespace PhoneDumpClient.View
         {
             var resutl = await _testService.TestToken(_tokenService.Token);
         }
+
+        public string MainText
+        {
+            get { return _mainText; }
+            set
+            {
+                _mainText = value; 
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
