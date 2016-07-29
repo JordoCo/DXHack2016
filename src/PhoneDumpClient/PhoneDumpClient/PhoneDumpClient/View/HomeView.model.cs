@@ -18,7 +18,8 @@ namespace PhoneDumpClient.View
         private readonly ITokenTestService _testService;
         public string MainText { get; set; }
 
-        public HomeViewModel()
+        public HomeViewModel(ITokenService tokenService, ITokenTestService testService,
+            IFilePickerService filePickerService)
         {
             _tokenService = tokenService;
             _testService = testService;
