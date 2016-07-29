@@ -36,7 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IFilePickerService.cs" />
     <Compile Include="View\HomeView.model.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>

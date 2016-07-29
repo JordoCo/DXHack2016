@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XamlingCore.Portable.View.ViewModel;
+using PhoneDumpClient.Services;
+using Xamarin.Forms;
 
 namespace PhoneDumpClient.View
 {
@@ -11,9 +13,14 @@ namespace PhoneDumpClient.View
     {
         public string MainText { get; set; }
 
-        public HomeViewModel()
+        public HomeViewModel(IFilePickerService filePickerService)
         {
             MainText = "Jordan";
+            Device.BeginInvokeOnMainThread(async () => 
+            {
+                var str = await filePickerService.GetFileStringAsync();
+            });
         }
+
     }
 }
