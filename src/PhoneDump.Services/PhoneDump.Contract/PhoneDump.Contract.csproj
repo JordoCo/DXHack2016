@@ -41,15 +41,6 @@
     <Compile Include="Services\IWebService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\PhoneDumpClient\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PhoneDump.Entity\PhoneDump.Entity.csproj">
       <Project>{403911D3-78FF-4A0B-8C86-650ABA503D38}</Project>
       <Name>PhoneDump.Entity</Name>
