@@ -81,7 +81,9 @@ namespace PhoneDumpClient.View
                 var entity = new DumpWireEntity
                 {
                     Id = Guid.NewGuid(),
-                    EncodedData = @"<html>
+                    EncodedData = string.Empty,
+                    MediaType = "text/html",
+                    RawData = @"<html>
     <head></head>
     <body>
         <h1>Here's some raw HTML</h1>
@@ -91,9 +93,7 @@ namespace PhoneDumpClient.View
         <p>Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.</p>
         <p>Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.</p>
     </body>
-</html>",
-                    MediaType = "text/html",
-                    RawData = "HTML Received"
+</html>"
                 };
                 await _sendDumpService.SendDump(entity);
             });
@@ -226,7 +226,7 @@ namespace PhoneDumpClient.View
 
                     DumpSource = null;
                     RawMessage = "Received HTML content";
-                    TargetUrl = new HtmlWebViewSource { Html = dump.EncodedData };
+                    TargetUrl = new HtmlWebViewSource { Html = dump.RawData };
 
                     break;
 
