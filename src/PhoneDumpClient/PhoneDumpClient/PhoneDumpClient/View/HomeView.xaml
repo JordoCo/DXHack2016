@@ -22,7 +22,7 @@
       <Label Text="Message: " />
       <Label Text="{Binding RawMessage}" />
     </StackLayout>
-    <WebView Grid.Row="4" Source="{Binding TargetUrl}" />
+    <WebView Grid.Row="4" Source="{Binding TargetUrl}" IsVisible="{Binding ShowWebView}" />
   </Grid>
 
 </ContentPage>
