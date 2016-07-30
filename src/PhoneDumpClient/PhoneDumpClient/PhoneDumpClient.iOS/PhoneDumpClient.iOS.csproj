@@ -178,11 +178,6 @@
       <Project>{83B6CF64-3CF4-4924-B218-36FA2D03BFAD}</Project>
       <Name>PhoneDumpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\PhoneDumpClient.iOS.ActionExtension\PhoneDumpClient.iOS.ActionExtension.csproj">
-      <IsAppExtension>true</IsAppExtension>
-      <Project>{D5A29A14-A116-45B2-A126-607570098E6E}</Project>
-      <Name>PhoneDumpClient.iOS.ActionExtension</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.0.107\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
