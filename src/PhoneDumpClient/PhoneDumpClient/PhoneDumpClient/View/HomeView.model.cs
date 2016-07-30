@@ -196,7 +196,6 @@ namespace PhoneDumpClient.View
 
                 var exists = await _localStorage.FileExists(fileName);
                 CurrentFileName = fileName;
-
                 
             }
 

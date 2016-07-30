@@ -91,6 +91,7 @@
     <Compile Include="Glue\ProjectGlue.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Model\Services\LauncherService.cs" />
     <Compile Include="Model\Services\WebService.cs" />
     <Compile Include="Services\FilePickerService.cs" />
     <None Include="app.config" />
