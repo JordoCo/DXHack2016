@@ -98,7 +98,7 @@ namespace PhoneDumpClient.View
                     Id = Guid.NewGuid(),
                     EncodedData = string.Empty,
                     MediaType = "text/uri-list",
-                    RawData = "http://blogs.msdn.com/acoat"
+                    RawData = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                 };
                 await _sendDumpService.SendDump(entity);
             });
@@ -1752,7 +1752,12 @@ namespace PhoneDumpClient.View
                 case "video/vnd.uvvu-mp4":
                 case "video/vnd-vivo":
                 case "video/VP8":
-                #endregion
+                    #endregion
+
+                    DumpSource = null;
+                    TargetUrl = string.Empty;
+                    RawMessage = $"Handling for {dump.MediaType} not implemented";
+                    break;
 
                 #endregion
                 default:
