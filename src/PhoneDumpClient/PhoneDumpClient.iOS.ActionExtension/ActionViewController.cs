@@ -16,6 +16,7 @@ namespace PhoneDumpClient.iOS.ActionExtension
 	{
 		private string _encodedData;
 		private string _rawData;
+		private string _mediaType;
 
 		protected ActionViewController(IntPtr handle) : base(handle)
 		{
@@ -44,7 +45,22 @@ namespace PhoneDumpClient.iOS.ActionExtension
 			{
 				foreach (var itemProvider in item.Attachments)
 				{
-					if (itemProvider.HasItemConformingTo(UTType.Image))
+					if (itemProvider.HasItemConformingTo(UTType.URL))
+					{
+						itemProvider.LoadItem(UTType.URL, null, delegate (NSObject url, NSError error)
+						{
+							NSOperationQueue.MainQueue.AddOperation(delegate
+							{
+								var nsUrl = url as NSUrl;
+								_rawData = nsUrl.AbsoluteString;
+								_mediaType = "text/plain";
+							});
+						});
+
+						imageFound = true;
+						break;
+					}
+					else if (itemProvider.HasItemConformingTo(UTType.Image))
 					{
 						// This is an image. We'll load it, then place it in our image view.
 						itemProvider.LoadItem(UTType.Image, null, delegate (NSObject image, NSError error)
@@ -58,8 +74,7 @@ namespace PhoneDumpClient.iOS.ActionExtension
 									var data = UIImage.LoadFromData(NSData.FromUrl(url)).AsJPEG(1.0f);
 									var str = data.GetBase64EncodedString(NSDataBase64EncodingOptions.None);
 									_encodedData = str;
-
-									SendDataAsync();
+									_mediaType = "image/jpeg";
 								});
 							}
 						});
@@ -77,6 +92,16 @@ namespace PhoneDumpClient.iOS.ActionExtension
 			}
 		}
 
+		public override void ViewDidAppear(bool animated)
+		{
+			NSOperationQueue.MainQueue.AddOperation(delegate
+			{
+				SendDataAsync();
+
+			});
+			base.ViewDidAppear(animated);
+		}
+
 		private async void SendDataAsync()
 		{
 			var glue = new ProjectGlue();
@@ -91,21 +116,21 @@ namespace PhoneDumpClient.iOS.ActionExtension
 				Id = Guid.NewGuid(),
 				EncodedData = _encodedData,
 				RawData = _rawData,
-				MediaType = "image/jpeg"
+				MediaType = _mediaType
 			};
 
 			await sendDumpService.SendDump(entity);
-
-			// Return any edited content to the host app.
-			// This template doesn't do anything, so we just echo the passed-in items.
-			ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
+			DoneClicked(null);
 		}
 
 		partial void DoneClicked(NSObject sender)
 		{
 			// Return any edited content to the host app.
 			// This template doesn't do anything, so we just echo the passed-in items.
-			ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
+			NSOperationQueue.MainQueue.AddOperation(delegate
+			{
+				ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
+			});
 		}
 	}
 }
