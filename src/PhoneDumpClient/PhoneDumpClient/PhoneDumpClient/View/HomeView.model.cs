@@ -175,13 +175,21 @@ namespace PhoneDumpClient.View
                     TargetUrl = string.Empty;
 
                     // Overtake string-data from object in variable
-                    string cFotoBase64 = dump.EncodedData; // Overtake string-data from object in variable
-                                                           // Convert in Byte-Array with encoding
-                    Byte[] ImageFotoBase64 = System.Convert.FromBase64String(cFotoBase64);
+                    //string cFotoBase64 = dump.EncodedData; // Overtake string-data from object in variable
+                    //                                       // Convert in Byte-Array with encoding
+                    Byte[] ImageFotoBase64 = System.Convert.FromBase64String(dump.EncodedData);
                     // Create Image and set stream from converted Byte-Array as source
                     DumpSource = ImageSource.FromStream(() => new MemoryStream(ImageFotoBase64));//, WidthRequest = 200, HeightRequest = 200, BackgroundColor = Color.Aqua, };
+                    RawMessage = "Received Image File";
                     break;
 
+                // video handler
+                case "video/mp4":
+                    TargetUrl = string.Empty;
+
+                    // Find the locally written file and set the media element's source
+
+                    break;
 
                 #region Unused MIME Types
                 #region application
@@ -1702,7 +1710,6 @@ namespace PhoneDumpClient.View
                 case "video/MP1S":
                 case "video/MP2P":
                 case "video/MP2T":
-                case "video/mp4":
                 case "video/MP4V-ES":
                 case "video/MPV":
                 case "video/mpeg4-generic":
@@ -1821,7 +1828,20 @@ namespace PhoneDumpClient.View
         public string TargetUrl
         {
             get { return targetUrl; }
-            set { targetUrl = value; OnPropertyChanged(); }
+            set { targetUrl = value; OnPropertyChanged(); OnPropertyChanged("ShowWebView"); }
+        }
+
+        public bool ShowWebView
+        {
+            get { return !String.IsNullOrWhiteSpace(TargetUrl); }
+        }
+
+        private bool showMediaPlayer;
+
+        public bool ShowMediaplayer
+        {
+            get { return showMediaPlayer; }
+            set { showMediaPlayer = value; OnPropertyChanged(); }
         }
 
 
