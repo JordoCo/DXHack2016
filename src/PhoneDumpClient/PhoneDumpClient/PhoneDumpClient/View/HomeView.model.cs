@@ -119,12 +119,13 @@ namespace PhoneDumpClient.View
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
+                var str = await _filePickerService.GetFileStringAsync();
                 var entity = new DumpWireEntity
                 {
                     Id = Guid.NewGuid(),
-                    EncodedData = string.Empty,
+                    EncodedData = str,
                     MediaType = "application/pdf",
-                    RawData = "PDF not implemented yet"
+                    RawData = "Sending PDF..."
                 };
                 await _sendDumpService.SendDump(entity);
             });
@@ -204,6 +205,20 @@ namespace PhoneDumpClient.View
             {
                 // Anything that might be able to be displayed in the browser window
                 case "application/pdf":
+                    DumpSource = null;
+                    _clearWebView();
+                    if (!string.IsNullOrWhiteSpace(CurrentFileName))
+                    {
+                        RawMessage = "Launching PDF Viewer...";
+                        await _launcherService.Launch(CurrentFileName);
+                    }
+                    else
+                    {
+                        RawMessage = "No file to Launch ...";
+
+                    }
+                    break;
+
                 case "text/plain":
                 case "text/uri-list":
 
@@ -1825,7 +1840,15 @@ namespace PhoneDumpClient.View
 
                     DumpSource = null;
                     _clearWebView();
-                    RawMessage = $"Handling for {dump.MediaType} not implemented";
+                    if (!string.IsNullOrWhiteSpace(CurrentFileName))
+                    {
+                        RawMessage = $"Launching viewer for {dump.MediaType}";
+                        await _launcherService.Launch(_currentFileName);
+                    }
+                    else
+                    {
+                        RawMessage = $"No file received for {dump.MediaType}";
+                    }
                     break;
 
                 #endregion

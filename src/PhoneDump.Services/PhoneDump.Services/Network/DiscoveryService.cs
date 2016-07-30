@@ -26,11 +26,15 @@ namespace PhoneDump.Services.Network
 
         public async Task PerformDiscovery()
         {
-			LocalUrl = "http://10.106.20.76:8800/api/data";
+			LocalUrl = "http://10.83.234.43:8800/api/data";
 		}
 
         public async Task PerformRealDiscovery()
         {
+
+            await PerformDiscovery();
+            return;
+
             _settingsRepo.SetEndPoint("http://testapiforlogics.azurewebsites.net/ip.txt");
 
             var result = await _settingsRepo.GetResult();
