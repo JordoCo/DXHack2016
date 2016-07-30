@@ -1,6 +1,7 @@
 #Sprint timings
 
- || Planning Meeting | Sprint|
+|| Planning Meeting | Sprint|
+|--|--|--|
 |Sprint 0|Sat 11:15-11:30|Sat 11:30-13:15|
 |Sprint 1|Sat 13:45-14:00|Sat 14:00-16:15|
 |Sprint 2|Sat 16:15-16:30|Sat 16:30-18:45|
