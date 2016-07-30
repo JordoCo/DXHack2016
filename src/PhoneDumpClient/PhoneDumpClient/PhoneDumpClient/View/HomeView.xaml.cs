@@ -14,5 +14,7 @@ namespace PhoneDumpClient.View
         {
             InitializeComponent();
         }
+
+
     }
 }
