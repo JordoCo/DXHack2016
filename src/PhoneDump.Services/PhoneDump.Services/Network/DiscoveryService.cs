@@ -31,7 +31,6 @@ namespace PhoneDump.Services.Network
 
         public async Task PerformRealDiscovery()
         {
-
             await PerformDiscovery();
             return;
 
