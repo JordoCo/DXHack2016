@@ -184,18 +184,20 @@ namespace PhoneDumpClient.View
         async void _processImage(DumpWireEntity dump)
         {
             RawMessage = string.Empty;
+            byte[] decoded = null;
 
-            var decoded = System.Convert.FromBase64String(dump.EncodedData);
-
-            if (decoded.Length > 0)
+            if (!string.IsNullOrWhiteSpace(dump.EncodedData))
             {
-                var fileName = "dumps\\" + dump.Id + dump.MediaType.Replace("/", ".");
-                Debug.WriteLine($"Saved to { await _localStorage.GetFullPath(fileName)}");
-                await _localStorage.Save(fileName, decoded);
+                if (decoded.Length > 0)
+                {
+                    var fileName = "dumps\\" + dump.Id + dump.MediaType.Replace("/", ".");
+                    Debug.WriteLine($"Saved to { await _localStorage.GetFullPath(fileName)}");
+                    await _localStorage.Save(fileName, decoded);
 
-                var exists = await _localStorage.FileExists(fileName);
-                CurrentFileName = fileName;
-                
+                    var exists = await _localStorage.FileExists(fileName);
+                    CurrentFileName = fileName;
+
+                }
             }
 
             // Image types from http://www.iana.org/assignments/media-types/media-types.xhtml

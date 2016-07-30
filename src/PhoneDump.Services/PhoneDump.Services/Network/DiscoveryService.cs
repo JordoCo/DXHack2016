@@ -31,7 +31,7 @@ namespace PhoneDump.Services.Network
 
         public async Task PerformRealDiscovery()
         {
-             await PerformDiscovery();
+            await PerformDiscovery();
             return;
             _settingsRepo.SetEndPoint("http://testapiforlogics.azurewebsites.net/ip.txt");
 
