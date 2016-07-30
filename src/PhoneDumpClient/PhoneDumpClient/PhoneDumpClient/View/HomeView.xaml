@@ -11,7 +11,12 @@
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
     <Label Grid.Row="0" Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" />
-    <Button Grid.Row="1" Command="{Binding TestButtonCommand}" Text="Send"></Button>
+    <StackLayout Grid.Row="1" Orientation="Horizontal">
+      <Button Command="{Binding TestTextButtonCommand}" Text="Text" />
+      <Button Command="{Binding TestUrlButtonCommand}" Text="Url" />
+      <Button Command="{Binding TestPdfButtonCommand}" Text="Pdf" />
+      <Button Command="{Binding TestImageButtonCommand}" Text="Image" />
+    </StackLayout>
     <Image Grid.Row="2" Source="{Binding DumpSource}"/>
     <StackLayout Grid.Row="3" Orientation="Horizontal">
       <Label Text="Message: " />
