@@ -14,6 +14,8 @@ using XamlingCore.Portable.View;
 using XamlingCore.Portable.Messages.XamlingMessenger;
 using PhoneDump.Services.Messages;
 using System.IO;
+using XamlingCore.Portable.Contract.Infrastructure.LocalStorage;
+
 
 namespace PhoneDumpClient.View
 {
@@ -23,6 +25,7 @@ namespace PhoneDumpClient.View
         private readonly ITokenTestService _testService;
         private readonly IFilePickerService _filePickerService;
         private readonly ISendDumpService _sendDumpService;
+        private readonly ILocalStorage _localStorage;
 
         public string _mainText;
 
@@ -34,12 +37,18 @@ namespace PhoneDumpClient.View
         public ICommand TestImageButtonCommand { get; set; }
 
         private ImageSource _dumpSource;
-        public ImageSource DumpSource { get { return _dumpSource; }
-            set { _dumpSource = value;  OnPropertyChanged();  } }
+     
+
+        private string _currentFileName;
+        public ImageSource DumpSource
+        {
+            get { return _dumpSource; }
+            set { _dumpSource = value; OnPropertyChanged(); }
+        }
 
         public HomeViewModel(ITokenService tokenService, ITokenTestService testService,
             IFilePickerService filePickerService,
-            ISendDumpService sendDumpService)
+            ISendDumpService sendDumpService, ILocalStorage localStorage)
         {
 
             this.Register<NewDumpMessage>(_onNewDumpMessage);
@@ -53,6 +62,7 @@ namespace PhoneDumpClient.View
             _testService = testService;
             _filePickerService = filePickerService;
             _sendDumpService = sendDumpService;
+            _localStorage = localStorage;
 
             _timer();
 
@@ -140,9 +150,21 @@ namespace PhoneDumpClient.View
             _processImage(m.Entity);
         }
 
-        void _processImage(DumpWireEntity dump)
+        async void _processImage(DumpWireEntity dump)
         {
             RawMessage = string.Empty;
+
+            var decoded = System.Convert.FromBase64String(dump.EncodedData);
+
+            if (decoded.Length > 0)
+            {
+                var fileName = "dumps\\" + dump.Id + dump.MediaType.Replace("/", ".");
+                Debug.WriteLine($"Saved to { await _localStorage.GetFullPath(fileName)}");
+                await _localStorage.Save(fileName, decoded);
+
+                var exists = await _localStorage.FileExists(fileName);
+                CurrentFileName = fileName;
+            }
 
             // Image types from http://www.iana.org/assignments/media-types/media-types.xhtml
             switch (dump.MediaType)
@@ -177,9 +199,9 @@ namespace PhoneDumpClient.View
                     // Overtake string-data from object in variable
                     //string cFotoBase64 = dump.EncodedData; // Overtake string-data from object in variable
                     //                                       // Convert in Byte-Array with encoding
-                    Byte[] ImageFotoBase64 = System.Convert.FromBase64String(dump.EncodedData);
+
                     // Create Image and set stream from converted Byte-Array as source
-                    DumpSource = ImageSource.FromStream(() => new MemoryStream(ImageFotoBase64));//, WidthRequest = 200, HeightRequest = 200, BackgroundColor = Color.Aqua, };
+                    DumpSource = ImageSource.FromStream(() => new MemoryStream(decoded));//, WidthRequest = 200, HeightRequest = 200, BackgroundColor = Color.Aqua, };
                     RawMessage = "Received Image File";
                     break;
 
@@ -1810,7 +1832,7 @@ namespace PhoneDumpClient.View
             get { return _mainText; }
             set
             {
-                _mainText = value; 
+                _mainText = value;
                 OnPropertyChanged();
             }
         }
@@ -1844,6 +1866,14 @@ namespace PhoneDumpClient.View
             set { showMediaPlayer = value; OnPropertyChanged(); }
         }
 
-
+        public string CurrentFileName
+        {
+            get { return _currentFileName; }
+            set
+            {
+                _currentFileName = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
