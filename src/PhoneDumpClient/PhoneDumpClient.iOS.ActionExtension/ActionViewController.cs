@@ -108,7 +108,7 @@ namespace PhoneDumpClient.iOS.ActionExtension
 			glue.Init();
 
 			var discoveryService = glue.Container.Resolve<IDiscoveryService>();
-			await discoveryService.PerformRealDiscovery();
+			await discoveryService.PerformDiscovery();
 
 			var sendDumpService = glue.Container.Resolve<ISendDumpService>();
 			var entity = new DumpWireEntity
