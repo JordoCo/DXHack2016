@@ -27,6 +27,7 @@ namespace PhoneDumpClient.View
         private readonly IFilePickerService _filePickerService;
         private readonly ISendDumpService _sendDumpService;
         private readonly ILocalStorage _localStorage;
+        private readonly ILauncherService _launcherService;
 
         public string _mainText;
 
@@ -50,7 +51,7 @@ namespace PhoneDumpClient.View
 
         public HomeViewModel(ITokenService tokenService, ITokenTestService testService,
             IFilePickerService filePickerService,
-            ISendDumpService sendDumpService, ILocalStorage localStorage)
+            ISendDumpService sendDumpService, ILocalStorage localStorage, ILauncherService launcherService)
         {
 
             this.Register<NewDumpMessage>(_onNewDumpMessage);
@@ -66,6 +67,7 @@ namespace PhoneDumpClient.View
             _filePickerService = filePickerService;
             _sendDumpService = sendDumpService;
             _localStorage = localStorage;
+            _launcherService = launcherService;
 
             _timer();
 
@@ -193,6 +195,8 @@ namespace PhoneDumpClient.View
 
                 var exists = await _localStorage.FileExists(fileName);
                 CurrentFileName = fileName;
+
+                
             }
 
             // Image types from http://www.iana.org/assignments/media-types/media-types.xhtml

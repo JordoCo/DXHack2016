@@ -105,6 +105,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Controllers\DumpInContentController.cs" />
+    <Compile Include="Model\Services\LauncherService.cs" />
     <Compile Include="Model\Services\WebService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FilePickerService.cs" />
