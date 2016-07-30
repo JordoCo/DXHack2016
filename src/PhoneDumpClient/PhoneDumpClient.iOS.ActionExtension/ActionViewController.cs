@@ -20,7 +20,6 @@ namespace PhoneDumpClient.iOS.ActionExtension
 		protected ActionViewController(IntPtr handle) : base(handle)
 		{
 			// Note: this .ctor should not contain any initialization logic.
-			Title = "Test";
 		}
 
 		public override void DidReceiveMemoryWarning()
@@ -91,6 +90,7 @@ namespace PhoneDumpClient.iOS.ActionExtension
 			{
 				Id = Guid.NewGuid(),
 				EncodedData = _encodedData,
+				RawData = _rawData,
 				MediaType = "image/jpeg"
 			};
 
