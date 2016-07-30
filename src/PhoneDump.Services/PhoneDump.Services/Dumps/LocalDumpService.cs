@@ -56,7 +56,7 @@ namespace PhoneDump.Services.Dumps
         {
             _dumps.Add(dump);
 
-            await _cache.SetEntity(DumpConstants.LocalDumpFileName, _dumps);
+            //await _cache.SetEntity(DumpConstants.LocalDumpFileName, _dumps);
 
         }
     }
