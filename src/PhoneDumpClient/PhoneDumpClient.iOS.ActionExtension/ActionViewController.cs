@@ -97,8 +97,8 @@ namespace PhoneDumpClient.iOS.ActionExtension
 			NSOperationQueue.MainQueue.AddOperation(delegate
 			{
 				SendDataAsync();
-
-			});
+                // https://1drv.ms/v/s!ArAmvv688GNakLQBsuuQnRLmHwynYQ 
+            });
 			base.ViewDidAppear(animated);
 		}
 

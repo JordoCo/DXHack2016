@@ -19,6 +19,7 @@ using XamlingCore.Portable.Contract.Infrastructure.LocalStorage;
 
 namespace PhoneDumpClient.View
 {
+
     public class HomeViewModel : XViewModel
     {
         private readonly ITokenService _tokenService;
@@ -35,6 +36,7 @@ namespace PhoneDumpClient.View
         public ICommand TestUrlButtonCommand { get; set; }
         public ICommand TestPdfButtonCommand { get; set; }
         public ICommand TestImageButtonCommand { get; set; }
+        public ICommand TestHTMLButtonCommand { get; set; }
 
         private ImageSource _dumpSource;
      
@@ -57,6 +59,7 @@ namespace PhoneDumpClient.View
             TestUrlButtonCommand = new XCommand(_onTestUrlButtonCommand);
             TestPdfButtonCommand = new XCommand(_onTestPdfButtonCommand);
             TestImageButtonCommand = new XCommand(_onTestImageButton);
+            TestHTMLButtonCommand = new XCommand(_onTestHtmlButton);
 
             _tokenService = tokenService;
             _testService = testService;
@@ -66,6 +69,32 @@ namespace PhoneDumpClient.View
 
             _timer();
 
+        }
+
+
+        private void _onTestHtmlButton()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var entity = new DumpWireEntity
+                {
+                    Id = Guid.NewGuid(),
+                    EncodedData = @"<html>
+    <head></head>
+    <body>
+        <h1>Here's some raw HTML</h1>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.</p>
+        <p>Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.</p>
+        <p>Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.</p>
+        <p>Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.</p>
+    </body>
+</html>",
+                    MediaType = "text/html",
+                    RawData = "HTML Received"
+                };
+                await _sendDumpService.SendDump(entity);
+            });
         }
 
         private void _onTestImageButton()
@@ -179,14 +208,22 @@ namespace PhoneDumpClient.View
                     Uri target = null;
                     if (Uri.TryCreate(dump.RawData, UriKind.Absolute, out target))
                     {
-                        TargetUrl = target.ToString();
+                        TargetUrl = new UrlWebViewSource { Url = target.ToString() };
                     }
                     else
                     {
-                        TargetUrl = string.Empty;
+                        _clearWebView();
                     }
 
                     RawMessage = dump.RawData;
+
+                    break;
+
+                case "text/html":
+
+                    DumpSource = null;
+                    RawMessage = "Received HTML content";
+                    TargetUrl = new HtmlWebViewSource { Html = dump.EncodedData };
 
                     break;
 
@@ -194,7 +231,7 @@ namespace PhoneDumpClient.View
                 case "image/png":
                 case "image/jpg":
                 case "image/jpeg":
-                    TargetUrl = string.Empty;
+                    _clearWebView();
 
                     // Overtake string-data from object in variable
                     //string cFotoBase64 = dump.EncodedData; // Overtake string-data from object in variable
@@ -207,7 +244,7 @@ namespace PhoneDumpClient.View
 
                 // video handler
                 case "video/mp4":
-                    TargetUrl = string.Empty;
+                    _clearWebView();
 
                     // Find the locally written file and set the media element's source
 
@@ -1648,10 +1685,9 @@ namespace PhoneDumpClient.View
                 case "text/dns":
                 case "text/ecmascript":
                 case "text/encaprtp":
-                case "text/example":
                 case "text/fwdred":
                 case "text/grammar-ref-list":
-                case "text/html":
+                case "text/example":
                 case "text/javascript":
                 case "text/jcr-cnd":
                 case "text/markdown":
@@ -1784,14 +1820,14 @@ namespace PhoneDumpClient.View
                     #endregion
 
                     DumpSource = null;
-                    TargetUrl = string.Empty;
+                    _clearWebView();
                     RawMessage = $"Handling for {dump.MediaType} not implemented";
                     break;
 
                 #endregion
                 default:
                     DumpSource = null;
-                    TargetUrl = string.Empty;
+                    _clearWebView();
 
                     RawMessage = "Unknown message type";
                     break;
@@ -1845,17 +1881,19 @@ namespace PhoneDumpClient.View
             set { rawMessage = value; OnPropertyChanged(); }
         }
 
-        private string targetUrl;
+        private WebViewSource targetUrl;
 
-        public string TargetUrl
+        public WebViewSource TargetUrl
         {
             get { return targetUrl; }
-            set { targetUrl = value; OnPropertyChanged(); OnPropertyChanged("ShowWebView"); }
+            set { targetUrl = value; OnPropertyChanged(); ShowWebView = true; }
         }
 
+        private bool showWebView;
         public bool ShowWebView
         {
-            get { return !String.IsNullOrWhiteSpace(TargetUrl); }
+            get { return showWebView; }
+            set { showWebView = value; OnPropertyChanged(); }
         }
 
         private bool showMediaPlayer;
@@ -1864,6 +1902,13 @@ namespace PhoneDumpClient.View
         {
             get { return showMediaPlayer; }
             set { showMediaPlayer = value; OnPropertyChanged(); }
+        }
+
+
+        private void _clearWebView()
+        {
+            TargetUrl = null;
+            ShowWebView = false;
         }
 
         public string CurrentFileName

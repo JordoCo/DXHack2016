@@ -16,13 +16,16 @@
       <Button Command="{Binding TestUrlButtonCommand}" Text="Url" />
       <Button Command="{Binding TestPdfButtonCommand}" Text="Pdf" />
       <Button Command="{Binding TestImageButtonCommand}" Text="Image" />
+      <Button Command="{Binding TestHTMLButtonCommand}" Text="HTML" />
+
+      <Label Text="Web View Showing" IsVisible="{Binding ShowWebView}" BackgroundColor="Aqua" />
     </StackLayout>
     <Image Grid.Row="2" Source="{Binding DumpSource}"/>
     <StackLayout Grid.Row="3" Orientation="Horizontal">
       <Label Text="Message: " />
       <Label Text="{Binding RawMessage}" />
     </StackLayout>
-    <WebView Grid.Row="4" Source="{Binding TargetUrl}" IsVisible="{Binding ShowWebView}" />
+    <WebView x:Name="webView" Grid.Row="4" Source="{Binding TargetUrl}" IsVisible="{Binding ShowWebView}" />
   </Grid>
 
 </ContentPage>
