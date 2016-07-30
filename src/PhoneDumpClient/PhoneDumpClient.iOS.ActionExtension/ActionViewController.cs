@@ -8,6 +8,7 @@ using PhoneDump.Contract.Services;
 using Autofac;
 using PhoneDump.Entity.Dumps;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace PhoneDumpClient.iOS.ActionExtension
 {
@@ -33,8 +34,6 @@ namespace PhoneDumpClient.iOS.ActionExtension
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-			return;
 
 			// Get the item[s] we're handling from the extension context.
 
@@ -62,27 +61,6 @@ namespace PhoneDumpClient.iOS.ActionExtension
 									var data = imageView.Image.AsJPEG(1.0f);
 									var str = data.GetBase64EncodedString(NSDataBase64EncodingOptions.None);
 									_encodedData = str;
-
-
-
-
-									var glue = new ProjectGlue();
-									glue.Init();
-
-
-
-									var sendDumpService = glue.Container.Resolve<ISendDumpService>();
-
-
-
-									var entity = new DumpWireEntity
-									{
-										Id = Guid.NewGuid(),
-										EncodedData = _encodedData,
-										MediaType = "stillsomething"
-									};
-									sendDumpService.SendDump(entity);
-
 								});
 							}
 						});
@@ -102,30 +80,25 @@ namespace PhoneDumpClient.iOS.ActionExtension
 
 		partial void DoneClicked(NSObject sender)
 		{
-			Trace.WriteLine("HEY!");
-			Console.WriteLine(_encodedData);
-
 			var glue = new ProjectGlue();
 			glue.Init();
 
-
+			var discoveryService = glue.Container.Resolve<IDiscoveryService>();
+			discoveryService.PerformDiscovery();
 
 			var sendDumpService = glue.Container.Resolve<ISendDumpService>();
-
-
-
 			var entity = new DumpWireEntity
 			{
 				Id = Guid.NewGuid(),
 				EncodedData = _encodedData,
-				MediaType = "stillsomething"
+				MediaType = "image/jpeg"
 			};
+
 			sendDumpService.SendDump(entity);
-		
 
 			// Return any edited content to the host app.
 			// This template doesn't do anything, so we just echo the passed-in items.
-			//ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
+			ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
 		}
 	}
 }
