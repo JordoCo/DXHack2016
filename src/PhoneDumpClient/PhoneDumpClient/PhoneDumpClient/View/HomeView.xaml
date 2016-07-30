@@ -17,6 +17,7 @@
       <Button Command="{Binding TestPdfButtonCommand}" Text="Pdf" />
       <Button Command="{Binding TestImageButtonCommand}" Text="Image" />
       <Button Command="{Binding TestHTMLButtonCommand}" Text="HTML" />
+      <Button Command="{Binding TestVideoButtonCommand}" Text="Video" />
 
       <Label Text="Web View Showing" IsVisible="{Binding ShowWebView}" BackgroundColor="Aqua" />
     </StackLayout>

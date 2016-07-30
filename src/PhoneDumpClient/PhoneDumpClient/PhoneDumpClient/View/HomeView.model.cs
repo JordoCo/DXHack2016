@@ -38,6 +38,7 @@ namespace PhoneDumpClient.View
         public ICommand TestPdfButtonCommand { get; set; }
         public ICommand TestImageButtonCommand { get; set; }
         public ICommand TestHTMLButtonCommand { get; set; }
+        public ICommand TestVideoButtonCommand { get; set; }
 
         private ImageSource _dumpSource;
      
@@ -61,6 +62,7 @@ namespace PhoneDumpClient.View
             TestPdfButtonCommand = new XCommand(_onTestPdfButtonCommand);
             TestImageButtonCommand = new XCommand(_onTestImageButton);
             TestHTMLButtonCommand = new XCommand(_onTestHtmlButton);
+            TestVideoButtonCommand = new XCommand(_onTestVideoButton);
 
             _tokenService = tokenService;
             _testService = testService;
@@ -73,6 +75,21 @@ namespace PhoneDumpClient.View
 
         }
 
+        private void _onTestVideoButton()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var str = await _filePickerService.GetFileStringAsync();
+                var entity = new DumpWireEntity
+                {
+                    Id = Guid.NewGuid(),
+                    EncodedData = str,
+                    MediaType = "video/mpeg4-generic",
+                    RawData = "Sending Video..."
+                };
+                await _sendDumpService.SendDump(entity);
+            });
+        }
 
         private void _onTestHtmlButton()
         {
