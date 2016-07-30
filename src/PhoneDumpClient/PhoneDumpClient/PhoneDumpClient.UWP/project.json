@@ -1,14 +1,11 @@
 ﻿{
   "dependencies": {
+    "Microsoft.Net.Http": "2.2.29",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "modernhttpclient": "2.4.2",
     "Restup": "1.0.0-beta4",
     "Xamarin.Forms": "2.3.0.107",
-    "XamlingCore_Forms": "2.1.163",
-    "modernhttpclient": "2.4.2",
-    "Microsoft.Bcl": "1.1.10",
-    "Microsoft.Bcl.Async": "1.0.168",
-    "Microsoft.Bcl.Build": "1.0.21",
-    "Microsoft.Net.Http": "2.2.29"
+    "XamlingCore_Forms": "2.1.163"
   },
   "frameworks": {
     "uap10.0": {}

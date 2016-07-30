@@ -50,7 +50,7 @@ namespace PhoneDumpClient.View.Root
         async void _initAsyncs()
         {
             await _localDumps.Init();
-            await _discoveryService.PerformDiscovery();
+            await _discoveryService.PerformRealDiscovery();
         }
     }
 }
