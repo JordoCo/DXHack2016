@@ -180,7 +180,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\PhoneDumpClient.iOS.ActionExtension\PhoneDumpClient.iOS.ActionExtension.csproj">
       <IsAppExtension>true</IsAppExtension>
-      <Project>{4D9A278E-4CC4-4196-A5AA-E9841E19448D}</Project>
+      <Project>{D5A29A14-A116-45B2-A126-607570098E6E}</Project>
       <Name>PhoneDumpClient.iOS.ActionExtension</Name>
     </ProjectReference>
   </ItemGroup>
