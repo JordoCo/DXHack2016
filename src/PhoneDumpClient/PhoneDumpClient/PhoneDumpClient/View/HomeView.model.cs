@@ -79,6 +79,17 @@ namespace PhoneDumpClient.View
             Byte[] ImageFotoBase64 = System.Convert.FromBase64String(cFotoBase64);
             // Create Image and set stream from converted Byte-Array as source
             DumpSource = ImageSource.FromStream(() => new MemoryStream(ImageFotoBase64));//, WidthRequest = 200, HeightRequest = 200, BackgroundColor = Color.Aqua, };
+
+            // put the raw data text in the message and, if it's a valid URI navigate to the url in the raw data text.
+
+            Uri target = null;
+            if(Uri.TryCreate(dump.RawData, UriKind.Absolute, out target))
+            {
+                TargetUrl = target.ToString();
+            }
+
+            RawMessage = dump.RawData;
+
         }
 
         async void _onTestButton()
@@ -117,6 +128,23 @@ namespace PhoneDumpClient.View
                 OnPropertyChanged();
             }
         }
+
+        private string rawMessage;
+
+        public string RawMessage
+        {
+            get { return rawMessage; }
+            set { rawMessage = value; OnPropertyChanged(); }
+        }
+
+        private string targetUrl;
+
+        public string TargetUrl
+        {
+            get { return targetUrl; }
+            set { targetUrl = value; OnPropertyChanged(); }
+        }
+
 
     }
 }

@@ -40,13 +40,6 @@ namespace PhoneDumpClient.UWP.Model.Controllers
         [UriFormat("/data")]
         public IPostResponse PostSomething([FromContent] DumpWireEntity data)
         {
-            var img = data.EncodedData;
-
-            var b = Convert.FromBase64String(img);
-           
-
-            Debug.WriteLine($"Received length: {b.Length}");
-
             new DumpReceivedMessage(data).Send();
 
             return new PostResponse(PostResponse.ResponseStatus.Created, $"data/{data.Id}");
