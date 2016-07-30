@@ -3,17 +3,23 @@
 using MobileCoreServices;
 using Foundation;
 using UIKit;
+using PhoneDumpClient.iOS.ActionExtension.Glue;
+using PhoneDump.Contract.Services;
+using Autofac;
+using PhoneDump.Entity.Dumps;
+using System.Diagnostics;
 
 namespace PhoneDumpClient.iOS.ActionExtension
 {
 	public partial class ActionViewController : UIViewController
 	{
-		private string encodedData;
-		private string rawData;
+		private string _encodedData;
+		private string _rawData;
 
 		protected ActionViewController(IntPtr handle) : base(handle)
 		{
 			// Note: this .ctor should not contain any initialization logic.
+			Title = "Test";
 		}
 
 		public override void DidReceiveMemoryWarning()
@@ -27,6 +33,8 @@ namespace PhoneDumpClient.iOS.ActionExtension
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			return;
 
 			// Get the item[s] we're handling from the extension context.
 
@@ -51,9 +59,30 @@ namespace PhoneDumpClient.iOS.ActionExtension
 									imageView.Image = UIImage.LoadFromData(NSData.FromUrl(url));
 
 									// Get encoded data.
-									var imageData = imageView.Image.AsJPEG(1);
-									var str = imageData.GetBase64EncodedString(NSDataBase64EncodingOptions.None);
-									encodedData = str;
+									var data = imageView.Image.AsJPEG(1.0f);
+									var str = data.GetBase64EncodedString(NSDataBase64EncodingOptions.None);
+									_encodedData = str;
+
+
+
+
+									var glue = new ProjectGlue();
+									glue.Init();
+
+
+
+									var sendDumpService = glue.Container.Resolve<ISendDumpService>();
+
+
+
+									var entity = new DumpWireEntity
+									{
+										Id = Guid.NewGuid(),
+										EncodedData = _encodedData,
+										MediaType = "stillsomething"
+									};
+									sendDumpService.SendDump(entity);
+
 								});
 							}
 						});
@@ -73,12 +102,30 @@ namespace PhoneDumpClient.iOS.ActionExtension
 
 		partial void DoneClicked(NSObject sender)
 		{
+			Trace.WriteLine("HEY!");
+			Console.WriteLine(_encodedData);
+
+			var glue = new ProjectGlue();
+			glue.Init();
 
 
+
+			var sendDumpService = glue.Container.Resolve<ISendDumpService>();
+
+
+
+			var entity = new DumpWireEntity
+			{
+				Id = Guid.NewGuid(),
+				EncodedData = _encodedData,
+				MediaType = "stillsomething"
+			};
+			sendDumpService.SendDump(entity);
+		
 
 			// Return any edited content to the host app.
 			// This template doesn't do anything, so we just echo the passed-in items.
-			ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
+			//ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
 		}
 	}
 }

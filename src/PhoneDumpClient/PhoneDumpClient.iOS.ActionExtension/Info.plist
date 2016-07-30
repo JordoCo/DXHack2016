@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>PhoneDumpClient.iOS.ActionExtension</string>
+	<string>PhoneDumpClient.iOS.ActionExtension9</string>
 	<key>CFBundleName</key>
-	<string>PhoneDumpClient.iOS.ActionExtension</string>
+	<string>PhoneDumpClient.iOS.ActionExtension9</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.yourcompany.PhoneDumpClient.ActionExtension</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>${BundleShortVersion}</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.9</string>
 	<key>MinimumOSVersion</key>
 	<string>9.3</string>
 	<key>NSExtension</key>
