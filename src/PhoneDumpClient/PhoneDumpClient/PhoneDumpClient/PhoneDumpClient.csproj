@@ -80,14 +80,6 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.3.0.107\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="XamlingCore.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\XamlingCore.Portable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="XamlingCore.XamarinThings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlingCore_Forms.2.1.163\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\XamlingCore.XamarinThings.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\HomeView.xaml">
