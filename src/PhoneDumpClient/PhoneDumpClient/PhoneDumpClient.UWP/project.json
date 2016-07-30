@@ -1,7 +1,10 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2"
-
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "Restup": "1.0.0-beta4",
+    "Xamarin.Forms": "2.3.0.107",
+    "XamlingCore_Forms": "2.1.163",
+    "Microsoft.Bcl.Async": "1.0.168"
   },
   "frameworks": {
     "uap10.0": {}
