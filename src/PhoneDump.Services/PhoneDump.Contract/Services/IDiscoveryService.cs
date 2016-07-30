@@ -6,5 +6,6 @@ namespace PhoneDump.Contract.Services
     {
         string LocalUrl { get; set; }
         Task PerformDiscovery();
+        Task PerformRealDiscovery();
     }
 }
