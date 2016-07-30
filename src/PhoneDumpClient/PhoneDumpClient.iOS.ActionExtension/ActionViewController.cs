@@ -55,12 +55,12 @@ namespace PhoneDumpClient.iOS.ActionExtension
 							{
 								NSOperationQueue.MainQueue.AddOperation(delegate
 								{
-									imageView.Image = UIImage.LoadFromData(NSData.FromUrl(url));
-
 									// Get encoded data.
-									var data = imageView.Image.AsJPEG(1.0f);
+									var data = UIImage.LoadFromData(NSData.FromUrl(url)).AsJPEG(1.0f);
 									var str = data.GetBase64EncodedString(NSDataBase64EncodingOptions.None);
 									_encodedData = str;
+
+									SendDataAsync();
 								});
 							}
 						});
@@ -78,13 +78,13 @@ namespace PhoneDumpClient.iOS.ActionExtension
 			}
 		}
 
-		partial void DoneClicked(NSObject sender)
+		private async void SendDataAsync()
 		{
 			var glue = new ProjectGlue();
 			glue.Init();
 
 			var discoveryService = glue.Container.Resolve<IDiscoveryService>();
-			discoveryService.PerformDiscovery();
+			await discoveryService.PerformDiscovery();
 
 			var sendDumpService = glue.Container.Resolve<ISendDumpService>();
 			var entity = new DumpWireEntity
@@ -94,8 +94,15 @@ namespace PhoneDumpClient.iOS.ActionExtension
 				MediaType = "image/jpeg"
 			};
 
-			sendDumpService.SendDump(entity);
+			await sendDumpService.SendDump(entity);
 
+			// Return any edited content to the host app.
+			// This template doesn't do anything, so we just echo the passed-in items.
+			ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
+		}
+
+		partial void DoneClicked(NSObject sender)
+		{
 			// Return any edited content to the host app.
 			// This template doesn't do anything, so we just echo the passed-in items.
 			ExtensionContext.CompleteRequest(ExtensionContext.InputItems, null);
